@@ -40,15 +40,8 @@ namespace Apostas.Infra.Data.Repositories.Generic
         }
 
 
-        public async Task <List<T>> List()
-        {
-            using (var banco = new DbContext(_OptionBuilder.Options))
-            {
-                return await banco.Set<T>().ToListAsync<T>();
-            }
-        }
 
-        public void update(T Entitie)
+        public void Update(T Entitie)
         {
             using (var banco = new DbContext(_OptionBuilder.Options))
             {
@@ -68,9 +61,22 @@ namespace Apostas.Infra.Data.Repositories.Generic
             if (!Status) return;
         }
 
-        List<T> InterfaceGeneric<T>.List()
+        public async Task <List<T>> ListAsync()
         {
-            throw new NotImplementedException();
+            using (var banco = new DbContext(_OptionBuilder.Options))
+            {
+                return await banco.Set<T>().ToListAsync<T>();
+            }
         }
+
+        public async Task<T> DetailAsync(int Id)
+        {
+            using (var banco = new DbContext(_OptionBuilder.Options))
+            {
+                var Objeto = await banco.Set<T>().FindAsync(Id);
+                return Objeto;
+            }
+        }
+
     }
 }

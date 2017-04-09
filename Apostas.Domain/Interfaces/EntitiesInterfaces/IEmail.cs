@@ -3,7 +3,7 @@ using Apostas.Domain.Interfaces.Generic;
 
 namespace Apostas.Domain.Interfaces.EntitiesInterfaces
 {
-    interface IEmail : InterfaceGeneric<Email>
+    public interface IEmail : InterfaceGeneric<Email>
     {
     }
 }

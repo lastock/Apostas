@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Apostas.Domain.Interfaces.Generic
 {
     public interface InterfaceGeneric<T> where T : class
     {
         void Add(T Entitie);
-        void update(T Entitie);
+        void Update(T Entitie);
         void Delete(int Id);
-        List<T> List();
+        Task<List<T>> ListAsync();
+        Task<T> DetailAsync(int Id);
 
     }
 }
